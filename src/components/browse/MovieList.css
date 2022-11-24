@@ -1,0 +1,49 @@
+.movie-list {
+	color: #fff;
+	margin-left: 20px;
+}
+.movie-list-row {
+	display: flex;
+	overflow-y: auto;
+	overflow-x: auto;
+	padding: 20px;
+}
+.movie-poster {
+	object-fit: contain;
+	width: 100%;
+	margin-right: 10px;
+	transition: transform 450ms;
+	max-height: 130px;
+}
+.movie-poster:hover {
+	transform: scale(1.1);
+}
+
+.movie-poster-large {
+	object-fit: contain;
+	width: 100%;
+	margin-right: 10px;
+	transition: transform 450ms;
+	max-height: 250px;
+}
+
+.movie-poster-large:hover {
+	transform: scale(1.11);
+}
+
+
+/* Scroll 2 */
+.sc2::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+}
+
+.sc2::-webkit-scrollbar-track {
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 10px;
+}
+
+.sc2::-webkit-scrollbar-thumb {
+	background-color: #15191b;
+	border-radius: 10px;
+}

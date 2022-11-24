@@ -1,0 +1,21 @@
+.movie-detail {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	margin-top: 50px;
+}
+.movie-detail-data {
+	padding-right: 30px;
+}
+.movie-detail-title {
+	margin-bottom: 20px;
+}
+.movie-detail-data hr {
+	margin-bottom: 20px;
+    width: 95%;
+}
+.movie-detail-overview {
+	width: 95%;
+}
+.movie-detail-trailer > img {
+	width: 100%
+}
