@@ -1,0 +1,25 @@
+.nav {
+	position: fixed;
+	width: 100vw;
+	top: 0;
+	padding: 20px;
+	height: 60px;
+	z-index: 1;
+	transition-timing-function: ease-in;
+	transition: all 0.5s;
+	display: flex;
+}
+.nav-black {
+	background-color: #111;
+}
+.search-icon {
+	width: 30px;
+    position: absolute;
+    right: 100px;
+}
+.nav-title {
+	font-size: 25px;
+	color: red;
+	font-weight: bold;
+	text-decoration:none;
+}
