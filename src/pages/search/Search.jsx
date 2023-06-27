@@ -6,7 +6,11 @@ import ResultList from '../../components/search/ResultList';
 import './Search.css'
 
 const Search = () => {
-	const [query, setQuery] = useState("")
+	const [query, setQuery] = useState({
+		keyword: "",
+		genre: ""
+	})
+	
 	return (
 		<div className='app'>
 			<NavBar />

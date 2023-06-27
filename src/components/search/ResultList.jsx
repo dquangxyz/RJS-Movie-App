@@ -36,15 +36,22 @@ const ResultList = (props) => {
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ keyword: props.query })
+                        body: JSON.stringify({ 
+                            keyword: props.query.keyword,
+                            genre: props.query.genre 
+                        })
                     });
                 
-                    if (!res.ok) {
-                        throw new Error('Request failed');
+                    if (res.status === 400) {
+                        setSearchedResults([]);
+                        throw new Error('No result');
+                    } else {
+                        const newData = await res.json();
+                        console.log(newData);
+                        setSearchedResults(newData.results);
                     }
                 
-                    const newData = await res.json();
-                    setSearchedResults(newData.results);
+                    
                 } catch (error) {
                     console.log(error);
                 }
@@ -53,7 +60,7 @@ const ResultList = (props) => {
 
             // check if users type in the query, then only call the function
             // else if query is empty, set the results as empty array
-            if (props.query){
+            if (props.query.keyword !== ''){
                 fetchData();
             } else {
                 setSearchedResults([])

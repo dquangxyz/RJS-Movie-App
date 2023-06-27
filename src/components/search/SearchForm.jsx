@@ -8,11 +8,12 @@ const SearchForm = (props) => {
     // Handler functions
     const handleClickReset = () => {
         setKeyword("")
-        props.onReceiveQuery("")
+        setGenre("")
+        props.onReceiveQuery({ keyword: "", genre: "" })
     }
 
     const handleClickSearch = () => {
-        props.onReceiveQuery(keyword)
+        props.onReceiveQuery({ keyword, genre })
     }
 
     const handleKeyDown = (e) => {
