@@ -21,6 +21,24 @@ const ResultList = (props) => {
     })
     const [showSelected, setShowSelected] = useState(false)
 
+    const handleViewDetails = (item) => {
+        setSelectedMovie({
+            id: item.id,
+            title: (item.title || item.name),
+            overview: item.overview,
+            release_date: (item.release_date || item.first_air_date),
+            vote_average: item.vote_average
+        });
+
+        // if reclick on the current movie => hide it
+        // else if click on other movie => setShow true to show that movie
+        if(selectedMovie.id === item.id){
+            setShowSelected(prevState => !prevState);
+        } else {
+            setShowSelected(true)
+        }
+    }
+
     useEffect(()=>{
         try {
             // define fetchData function
@@ -86,23 +104,7 @@ const ResultList = (props) => {
                         className=''
                         src={`${img_base_url}${item.poster_path}`} 
                         alt=''
-                        onClick={()=>{
-                            setSelectedMovie({
-                                id: item.id,
-                                title: (item.title || item.name),
-                                overview: item.overview,
-                                release_date: (item.release_date || item.first_air_date),
-                                vote_average: item.vote_average
-                            });
-
-                            // if reclick on the current movie => hide it
-                            // else if click on other movie => setShow true to show that movie
-                            if(selectedMovie.id === item.id){
-                                setShowSelected(prevState => !prevState);
-                            } else {
-                                setShowSelected(true)
-                            }                     
-                        }}
+                        onClick={() => handleViewDetails(item)}
                     /> 
                 ))}
             </div>

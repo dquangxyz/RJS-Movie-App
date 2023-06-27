@@ -31,9 +31,8 @@ const MovieDetail = (props) => {
                 })
 
                 const newData = await res.json()
-                console.log(newData)
 
-                if (newData.success === false) {
+                if (newData.success === false || newData === "Not found video") {
                     setKey("")
                     return
                 } //return when resource cannot be found 
@@ -64,8 +63,13 @@ const MovieDetail = (props) => {
             <div className='movie-detail-trailer'>
                 {/* if key is specified, show YouTube card, else show backdrop image */}
                 {key !== "" && <YouTube videoId={key} opts={opts}/>}
-                {key === "" && <img src={img_base_url + props.backdrop_path} alt="banner"/>}
+                {key === "" && props.backdrop_path ? (
+                    <img src={img_base_url + props.backdrop_path} alt="banner"/>
+                ) : (
+                    <p>No image available</p>
+                )}
             </div>
+
         </div>
     )
 }
