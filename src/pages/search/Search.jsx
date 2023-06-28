@@ -8,7 +8,8 @@ import './Search.css'
 const Search = () => {
 	const [query, setQuery] = useState({
 		keyword: "",
-		genre: ""
+		genre: "all",
+		mediaType: "all"
 	})
 	
 	return (

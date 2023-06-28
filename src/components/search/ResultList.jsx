@@ -56,7 +56,8 @@ const ResultList = (props) => {
                         },
                         body: JSON.stringify({ 
                             keyword: props.query.keyword,
-                            genre: props.query.genre 
+                            genre: props.query.genre,
+                            mediaType: props.query.mediaType,
                         })
                     });
                 
@@ -68,9 +69,8 @@ const ResultList = (props) => {
                         console.log(newData);
                         setSearchedResults(newData.results);
                     }
-                
-                    
                 } catch (error) {
+                    setSearchedResults([]);
                     console.log(error);
                 }
             };

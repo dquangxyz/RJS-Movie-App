@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import './SearchForm.css'
 
+const movieGenres = [ "Action", "Adventure", "Animation", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "History", "Horror", "Music", "Mystery", "Romance", "Science Fiction", "TV Movie", "Thriller", "War", "Western"]
+
 const SearchForm = ({ onReceiveQuery }) => {
     // Local state to capture input
     const [formValues, setFormValues] = useState({
         keyword: "",
-        genre: ""
+        genre: "all",
+        mediaType: "all"
     });
 
     // Handler functions
@@ -23,8 +26,8 @@ const SearchForm = ({ onReceiveQuery }) => {
     },[formValues, onReceiveQuery]);
 
     const handleReset = () => {
-        setFormValues({ keyword: "", genre: "" });
-        onReceiveQuery({ keyword: "", genre: "" });
+        setFormValues({ keyword: "", genre: "all", mediaType: "all" });
+        onReceiveQuery({ keyword: "", genre: "all", mediaType: "all" });
     };
 
     // Also handle submit when pressing "Enter" (event from document)
@@ -46,20 +49,44 @@ const SearchForm = ({ onReceiveQuery }) => {
     <form id="search-form" onSubmit={handleSubmit}>
         <div className="form-upper">
             <div className="form-input-text">
-                <input
-                    type="text"
-                    placeholder="Type Keywords"
-                    name="keyword"
-                    onChange={handleInputChange}
-                    value={formValues.keyword}
-                />
-                <input
-                    type="text"
-                    placeholder="Type Genre"
-                    name="genre"
-                    onChange={handleInputChange}
-                    value={formValues.genre}
-                />
+                <div className="form-input-field">
+                    <label>Keyword</label>
+                    <input
+                        type="text"
+                        placeholder="Type Keywords"
+                        name="keyword"
+                        onChange={handleInputChange}
+                        value={formValues.keyword}
+                    />
+                </div>
+                
+                <div className="form-input-field">
+                    <label>Genre</label>
+                    <select
+                        name="genre"
+                        onChange={handleInputChange}
+                        value={formValues.genre}
+                    >
+                        <option value="all">All</option>
+                        {movieGenres.map((item, index) => (
+                            <option key={index} value={item}>{item}</option>
+                        ))}
+                    </select>
+                </div>
+                
+                <div className="form-input-field">
+                    <label>Media type</label>
+                    <select
+                        name="mediaType"
+                        onChange={handleInputChange}
+                        value={formValues.mediaType}
+                    >
+                        <option value="all">All</option>
+                        <option value="movie">Movie</option>
+                        <option value="tv">TV</option>
+                        <option value="person">Person</option>
+                    </select>
+                </div>
             </div>
         </div>
         <div className="form-lower">

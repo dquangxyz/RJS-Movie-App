@@ -22,6 +22,9 @@
 	width: 92%;
 	border: none;
 }
+.form-input-field {
+	display: flex;
+}
 .form-search-icon {
 	width: 30px;
 	margin-left: 5px;
