@@ -66,7 +66,7 @@ const MovieDetail = (props) => {
                 {key === "" && props.backdrop_path ? (
                     <img src={img_base_url + props.backdrop_path} alt="banner"/>
                 ) : (
-                    <p>No image available</p>
+                    <p>No video available</p>
                 )}
             </div>
 
