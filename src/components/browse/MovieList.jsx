@@ -72,6 +72,7 @@ const MovieList = (props) => {
                 release_date={selectedMovie.release_date}
                 vote_average={selectedMovie.vote_average}
                 backdrop_path={selectedMovie.backdrop_path}
+                onCloseModal={() => setShowSelected(false)}
             />}
         </div>
     )

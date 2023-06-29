@@ -27,7 +27,8 @@ const ResultList = (props) => {
             title: (item.title || item.name),
             overview: item.overview,
             release_date: (item.release_date || item.first_air_date),
-            vote_average: item.vote_average
+            vote_average: item.vote_average,
+            backdrop_path: item.backdrop_path
         });
 
         // if reclick on the current movie => hide it
@@ -77,7 +78,6 @@ const ResultList = (props) => {
                 }
             };
               
-
             // check if users type in the query, then only call the function
             // else if query is empty, set the results as empty array
             if (props.query.keyword !== ''){
@@ -98,6 +98,8 @@ const ResultList = (props) => {
                 overview={selectedMovie.overview} 
                 release_date={selectedMovie.release_date}
                 vote_average={selectedMovie.vote_average}
+                backdrop_path={selectedMovie.backdrop_path}
+                onCloseModal={() => setShowSelected(false)}
             />}
             <div className='search-result-container'>
                 {searchedResults.map((item, index) => (

@@ -51,26 +51,34 @@ const MovieDetail = (props) => {
     }, [props.id])
 
     return (
-        <div className='movie-detail'>
-            <div className='movie-detail-data'>
-				<h1 className='movie-detail-title'>{props.title}</h1>
-				<hr></hr>
-				<h3>Release Date: {props.release_date}</h3>
-				<h3>Vote: {props.vote_average} / 10</h3>
-				<br></br>
-				<p className='movie-detail-overview'>{props.overview}</p>
-			</div>
-            <div className='movie-detail-trailer'>
-                {/* if key is specified, show YouTube card, else show backdrop image */}
-                {key !== "" && <YouTube videoId={key} opts={opts}/>}
-                {key === "" && props.backdrop_path ? (
-                    <img src={img_base_url + props.backdrop_path} alt="banner"/>
-                ) : (
-                    <p>No video available</p>
-                )}
-            </div>
+        <div className='movie-modal-overlay' onClick={props.onCloseModal}>
+            <div className='movie-modal' onClick={(e) => e.stopPropagation()}>
+                <div className='movie-detail'>
+                    <div className='movie-detail-data'>
+                        <h1 className='movie-detail-title'>{props.title}</h1>
+                        <hr></hr>
+                        <h3>Release Date: {props.release_date}</h3>
+                        <h3>Vote: {props.vote_average} / 10</h3>
+                        <br></br>
+                        <p className='movie-detail-overview'>{props.overview}</p>
+                    </div>
+                    <div className='movie-detail-trailer'>
+                        {/* if key is specified, show YouTube card, else show backdrop image */}
+                        {key === "" ? (
+                            props.backdrop_path ? (
+                                <img src={img_base_url + props.backdrop_path} alt="banner" />
+                            ) : (
+                                <p>No video available</p>
+                            )
+                        ) : (
+                            <YouTube videoId={key} opts={opts} />
+                        )}
 
+                    </div>
+                </div>
+            </div>
         </div>
+        
     )
 }
 
