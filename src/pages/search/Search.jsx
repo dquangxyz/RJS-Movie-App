@@ -9,7 +9,9 @@ const Search = () => {
 	const [query, setQuery] = useState({
 		keyword: "",
 		genre: "all",
-		mediaType: "all"
+		mediaType: "all",
+		language: "all",
+		year: ""
 	})
 	
 	return (

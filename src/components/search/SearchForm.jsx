@@ -8,7 +8,9 @@ const SearchForm = ({ onReceiveQuery }) => {
     const [formValues, setFormValues] = useState({
         keyword: "",
         genre: "all",
-        mediaType: "all"
+        mediaType: "all",
+        language: "all",
+        year: ""
     });
 
     // Handler functions
@@ -24,10 +26,10 @@ const SearchForm = ({ onReceiveQuery }) => {
         e.preventDefault();
         onReceiveQuery(formValues);
     },[formValues, onReceiveQuery]);
-
+    
     const handleReset = () => {
-        setFormValues({ keyword: "", genre: "all", mediaType: "all" });
-        onReceiveQuery({ keyword: "", genre: "all", mediaType: "all" });
+        setFormValues({ keyword: "", genre: "all", mediaType: "all", language: "all", year:"" });
+        onReceiveQuery({ keyword: "", genre: "all", mediaType: "all", language: "all", year:"" });
     };
 
     // Also handle submit when pressing "Enter" (event from document)
@@ -50,34 +52,37 @@ const SearchForm = ({ onReceiveQuery }) => {
         <div className="form-upper">
             <div className="form-input-text">
                 <div className="form-input-field">
-                    <label>Keyword</label>
+                    <label className="form-label">Keyword</label>
                     <input
                         type="text"
                         placeholder="Type Keywords"
                         name="keyword"
+                        className="form-input"
                         onChange={handleInputChange}
                         value={formValues.keyword}
                     />
                 </div>
                 
                 <div className="form-input-field">
-                    <label>Genre</label>
+                    <label className="form-label">Genre</label>
                     <select
                         name="genre"
+                        className="form-select"
                         onChange={handleInputChange}
                         value={formValues.genre}
                     >
                         <option value="all">All</option>
                         {movieGenres.map((item, index) => (
-                            <option key={index} value={item}>{item}</option>
+                            <option key={index} value={item.toLowerCase()}>{item}</option>
                         ))}
                     </select>
                 </div>
                 
                 <div className="form-input-field">
-                    <label>Media type</label>
+                    <label className="form-label">Media type</label>
                     <select
                         name="mediaType"
+                        className="form-select"
                         onChange={handleInputChange}
                         value={formValues.mediaType}
                     >
@@ -87,6 +92,33 @@ const SearchForm = ({ onReceiveQuery }) => {
                         <option value="person">Person</option>
                     </select>
                 </div>
+
+                <div className="form-input-field">
+                    <label className="form-label">Language</label>
+                    <select
+                        name="language"
+                        className="form-select"
+                        onChange={handleInputChange}
+                        value={formValues.language}
+                    >
+                        <option value="all">All</option>
+                        <option value="en">EN-US</option>
+                        <option value="ja">JP</option>
+                        <option value="ko">KR</option>
+                    </select>
+                </div>
+                
+                <div className="form-input-field">
+                    <label className="form-label">Year</label>
+                    <input
+                        type="text"
+                        name="year"
+                        className="form-input"
+                        onChange={handleInputChange}
+                        value={formValues.year}
+                    />
+                </div>
+                
             </div>
         </div>
         <div className="form-lower">

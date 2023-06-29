@@ -58,6 +58,8 @@ const ResultList = (props) => {
                             keyword: props.query.keyword,
                             genre: props.query.genre,
                             mediaType: props.query.mediaType,
+                            language: props.query.language,
+                            year: props.query.year
                         })
                     });
                 

@@ -22,13 +22,6 @@
 	width: 92%;
 	border: none;
 }
-.form-input-field {
-	display: flex;
-}
-.form-search-icon {
-	width: 30px;
-	margin-left: 5px;
-}
 .form-group-btn {
 	padding: 30px;
     display: flex;
@@ -73,3 +66,41 @@
 	box-shadow: none;
     cursor: pointer;
 }
+
+.form-input-field {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.form-label {
+	flex: 0 0 100px;
+	font-weight: bold;
+	margin-right: 10px;
+}
+
+.form-input,
+.form-select {
+	flex: 1;
+	border: none;
+	border-radius: 3px;
+	padding: 8px;
+	font-size: 16px;
+}
+
+.form-select {
+	appearance: none;
+	background: #fff;
+	cursor: pointer;
+}
+
+.form-select option {
+	background: #fff;
+	color: #555;
+}
+
+.form-select:focus {
+	outline: none;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+  
