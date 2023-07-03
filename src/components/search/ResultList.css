@@ -7,3 +7,25 @@
 	width: 10%;
 	margin: 10px;
 }
+.pagination {
+	display: flex;
+	justify-content: center;
+	padding-top: 60px;
+	padding-bottom: 100px;
+}
+.pagination-block {
+	width: 40px;
+	border-radius: 10px;
+	text-align: center;
+	line-height: 50px;
+}
+.pagination-block:hover {
+	cursor: pointer;
+}
+.pagination-current-page-block {
+	width: 40px;
+	border-radius: 10px;
+	text-align: center;
+	line-height: 50px;
+	background-color: violet;
+}

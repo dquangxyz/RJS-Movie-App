@@ -10,7 +10,6 @@ const api_backend_search_url = 'http://localhost:3001/api/movies/search'
 
 const ResultList = (props) => {
     // const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${props.query}`
-    const url = api_backend_search_url + `?token=${api_token}`
     const [searchedResults, setSearchedResults] = useState([])
     const [selectedMovie, setSelectedMovie] = useState({
         id: "",
@@ -20,7 +19,12 @@ const ResultList = (props) => {
         vote_average: ""
     })
     const [showSelected, setShowSelected] = useState(false)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [totalPage, setTotalPage] = useState(1)
 
+    const url = api_backend_search_url + `?token=${api_token}` + `&page=${currentPage}`
+
+    // handler functions
     const handleViewDetails = (item) => {
         setSelectedMovie({
             id: item.id,
@@ -38,6 +42,13 @@ const ResultList = (props) => {
         } else {
             setShowSelected(true)
         }
+    }
+
+    const handlePaginationNextPage = () => {
+        setCurrentPage(prevState => prevState + 1)
+    }
+    const handlePaginationPreviousPage = () => {
+        setCurrentPage(prevState => prevState - 1)
     }
 
     useEffect(()=>{
@@ -66,14 +77,20 @@ const ResultList = (props) => {
                 
                     if (res.status === 400) {
                         setSearchedResults([]);
+                        setTotalPage(1);
+                        setCurrentPage(1);
                         throw new Error('No result');
                     } else {
                         const newData = await res.json();
                         console.log(newData);
                         setSearchedResults(newData.results);
+                        setTotalPage(newData.total_pages);
+                        setCurrentPage(newData.page);
                     }
                 } catch (error) {
                     setSearchedResults([]);
+                    setTotalPage(1);
+                    setCurrentPage(1);
                     console.log(error);
                 }
             };
@@ -84,6 +101,8 @@ const ResultList = (props) => {
                 fetchData();
             } else {
                 setSearchedResults([])
+                setTotalPage(1);
+                setCurrentPage(1);
             }      
         } catch(error){
             console.log("Error", error)
@@ -111,6 +130,12 @@ const ResultList = (props) => {
                         onClick={() => handleViewDetails(item)}
                     /> 
                 ))}
+            </div>
+
+            <div className='pagination'>
+                { currentPage-1 > 0 && <span className='pagination-block' onClick={handlePaginationPreviousPage}>{currentPage-1}</span>}
+                <span className='pagination-current-page-block'>{currentPage}</span>
+                { currentPage+1 <= totalPage && <span className='pagination-block' onClick={handlePaginationNextPage}>{currentPage+1}</span>}
             </div>
         </div>
     )
